@@ -1,0 +1,636 @@
+﻿
+
+1. Primitive Types:
+* In Java, primitive types are the most basic data types that store single values. They are not objects and are more memory-efficient than objects.
+* Common primitive types in Java include int, double, char, boolean, and more.
+* Primitive types are used to store simple data like numbers and characters.
+Example:
+int age = 25; // Declaring and initializing an integer variable
+double price = 19.99; // Declaring and initializing a double variable
+char grade = 'A'; // Declaring and initializing a character variable
+boolean isJavaFun = true; // Declaring and initializing a boolean variable
+
+
+1.2 Why Programming? Why Java?:
+* Programming is the process of instructing a computer to perform tasks. It enables automation, data analysis, and the creation of software.
+* Java is a popular programming language known for its platform independence, meaning code can run on different platforms without modification.
+* It's used in a wide range of applications, from web development to Android app development.
+
+
+1.3 Variables and Data Types:
+* Variables are used to store data in a program. They have a data type that specifies what kind of data they can hold.
+* Common data types include integers, floating-point numbers, characters, and booleans.
+* Variable names must follow certain rules, like not starting with a number and using descriptive names for clarity.
+Example:
+int count; // Declaration of an integer variable
+double temperature; // Declaration of a double variable
+char symbol; // Declaration of a character variable
+boolean isSunny; // Declaration of a boolean variable
+
+
+1.4 Expressions and Assignment Statements:
+* Expressions are combinations of variables, literals, operators, and method calls that result in a value.
+* Assignment statements are used to assign values to variables using the assignment operator =.
+* Expressions can be used on the right side of an assignment to calculate a value.
+Example:
+int x = 5; // Assignment statement
+int y = x + 3; // Expression with addition
+
+
+1.5 Compound Assignment Operators:
+* Compound assignment operators combine an operation and an assignment. They are shortcuts for performing an operation and assigning the result to a variable.
+* Common compound assignment operators include +=, -=, *=, and /=.
+Example:
+int count = 10;
+count += 5; // Equivalent to count = count + 5
+
+
+1.6 Casting and Range of Variables:
+* Casting is the process of converting one data type into another. In Java, you can perform explicit casting when needed.
+* Casting can result in data loss if the target data type has a smaller range.
+* It's essential to be aware of the range limitations of different data types.
+Example:
+int x = 1000;
+byte y = (byte) x; // Explicit casting to a byte, may result in data loss
+
+
+2.1 Objects: Instances of Classes:
+* In Java, objects are instances of classes, and classes serve as blueprints for object creation.
+* A class defines the attributes (data) and methods (behavior) that objects of that class will have. For example, a Car class might have attributes like color and speed, and methods like start() and accelerate().
+* Objects are created based on class definitions. To create a Car object, you use syntax like Car myCar = new Car();, where myCar is an instance of the Car class.
+* Objects encapsulate their data and behavior, making it easy to model real-world entities in your programs.
+
+
+2.2 Creating and Storing Objects (Instantiation):
+* Object creation in Java involves the new keyword followed by a class constructor, which initializes the object. For instance, Car myCar = new Car(); creates a Car object named myCar.
+* The created object is an instance of the specified class and can be accessed using its reference, in this case, myCar.
+* Objects are often stored in variables for later use, and multiple objects of the same class can be created.
+
+
+2.3 Calling a Void Method:
+* In Java, methods can be declared with a void return type, meaning they don't return a value after execution.
+* To call a void method, you use the method's name followed by parentheses. For example, if you have a Person object john with a void method sayHello(), you can invoke it as john.sayHello();.
+* Void methods are typically used for performing actions or operations that don't need to return a value, like displaying a message.
+
+
+2.4 Calling a Void Method with Parameters:
+* Void methods can accept parameters, which are values or objects passed to the method for processing.
+* Parameters are specified within the method's parentheses during method declaration, e.g., void greet(String name).
+* When calling the method, you provide the required arguments, like john.greet("Alice");, where "Alice" is the argument passed to the greet() method.
+
+
+2.5 Calling a Non-void Method:
+* Non-void methods have return types other than void, indicating that they return a specific data type or object.
+* To call a non-void method, you use the method's name followed by parentheses. The result of the method call can be assigned to a variable. For example, if you have a Person object john with a non-void method getAge(), you can call it and store the result like int age = john.getAge();.
+
+
+2.6 String Objects: Concatenation, Literals & More:
+* Strings in Java are objects representing sequences of characters. They can be created using string literals like "Hello, World!".
+* String concatenation is the process of combining strings. For instance, "Hello" + " " + "World!" results in the string "Hello World!".
+* Strings are immutable, meaning their values cannot be changed after creation. Operations on strings create new string objects.
+* Java provides various methods for manipulating strings, like length(), substring(), and toLowerCase().
+
+
+2.7 String Methods:
+* Java's String class includes a wide range of methods for string manipulation.
+* length(): Returns the length of the string.
+* charAt(int index): Retrieves the character at a specified index.
+* substring(int startIndex, int endIndex): Extracts a portion of the string.
+* toUpperCase() and toLowerCase(): Change the case of characters in the string.
+* These methods help you perform common string operations efficiently.
+
+
+2.8 Wrapper Classes: Integers and Doubles:
+* Wrapper classes in Java are used to convert primitive data types (e.g., int, double) into objects.
+* They are useful when you need to treat primitives as objects, for example when working with collections that require objects.
+* For instance, int is a primitive data type, and Integer is its corresponding wrapper class. You can create an Integer object to represent an int value.
+
+
+2.9 Using the Math Class:
+* The Math class in Java provides a collection of static methods for performing various mathematical calculations.
+* Math.sqrt(double x) computes the square root of a number x.
+* Math.pow(double base, double exponent) raises base to the power of exponent.
+* Math.random() generates a random double value between 0.0 (inclusive) and 1.0 (exclusive).
+* Math methods are essential for complex mathematical operations in your Java programs.
+
+
+3.1 Boolean Expressions:
+* Boolean expressions are used to create conditions in Java programs that evaluate to either true or false.
+* They commonly involve relational operators like < (less than), > (greater than), == (equal to), != (not equal to), <= (less than or equal to), and >= (greater than or equal to).
+* Logical operators such as && (logical AND), || (logical OR), and ! (logical NOT) are used to combine multiple conditions.
+* Complex boolean expressions can be created by nesting conditions within parentheses.
+* For example, age >= 18 && (hasLicense || hasPermit) checks if a person is at least 18 years old and either has a driver's license or a learner's permit.
+
+
+3.2 if Statements and Control Flow:
+* if statements are fundamental control structures that allow your program to make decisions based on conditions.
+* The syntax of an if statement is if (condition) { /* code to execute if condition is true */ }.
+* When the condition evaluates to true, the code block inside the if statement is executed; otherwise, it's skipped.
+* You can include any valid Java code within the block to be executed.
+* If there's no else part, execution continues after the if block.
+
+
+3.3 if-else Statements:
+* An if-else statement extends the if statement by providing an alternative code block to execute if the condition is false.
+* The syntax is if (condition) { /* code for true condition */ } else { /* code for false condition */ }.
+* When the condition is true, the code in the first block is executed; when it's false, the code in the else block is executed.
+* if-else statements are used when you have exactly two possible outcomes.
+
+
+3.4 else if Statements:
+* An else if statement is used to check multiple conditions in sequence and execute the first block of code whose condition is true.
+* Multiple else if blocks can be used after the initial if statement.
+* The syntax is if (condition1) { /* code for condition1 */ } else if (condition2) { /* code for condition2 */ } else { /* code if no conditions are true */ }.
+* This construct is useful for handling different scenarios with more than two possible outcomes.
+
+
+3.5 Compound Boolean Expressions:
+* Compound boolean expressions allow you to combine multiple conditions using logical operators.
+* && (logical AND) requires that both conditions on its left and right are true for the entire expression to be true.
+* || (logical OR) needs at least one of the conditions to be true for the whole expression to be true.
+* Parentheses can be used to control the order of evaluation in complex expressions.
+* For example, (x > 5 && y < 10) || z == 7 creates a compound boolean expression that checks if x is greater than 5 and y is less than 10, or if z is equal to 7.
+
+
+3.6 Equivalent Boolean Expressions:
+* Equivalent boolean expressions are different ways to represent the same logical condition.
+* Understanding equivalent expressions is essential for code readability and optimization.
+* For example, if (x > 5) is equivalent to if (!(x <= 5)), as both conditions check if x is greater than 5.
+
+
+3.7 Comparing Objects:
+* When comparing objects using the == operator, you're comparing object references, not their content.
+* == returns true if the references point to the same object in memory.
+* To compare the content of objects, you should use the .equals() method, which is often overridden in classes to provide custom comparison logic.
+* For instance, comparing two String objects for content equality should be done with string1.equals(string2).
+
+
+4.1 while Loops:
+* while loops are used for repetitive execution of a block of code as long as a specified condition is true. The condition is evaluated before each iteration.
+* Example: Printing numbers from 1 to 10 using a while loop.
+int i = 1;
+while (i <= 10) {
+    System.out.println(i);
+    i++;
+}
+
+
+4.2 for Loops:
+* for loops provide a concise way to iterate over a range of values or elements. They include initialization, condition, and iteration expressions within the loop.
+* Example: Printing numbers from 1 to 10 using a for loop.
+for (int i = 1; i <= 10; i++) {
+    System.out.println(i);
+}
+
+
+4.3 Developing Algorithms Using Strings:
+* String algorithms involve manipulating text data. For example, searching for a specific word in a text:
+String text = "This is a sample text with some keywords.";
+String keyword = "sample";
+if (text.contains(keyword)) {
+    System.out.println("Keyword found!");
+}
+
+
+4.4 Nested Iteration:
+* Nested iteration is used for processing multi-dimensional data structures like a 2D array. For example, finding the maximum value in a 2D array:
+int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
+int max = Integer.MIN_VALUE;
+for (int i = 0; i < matrix.length; i++) {
+    for (int j = 0; j < matrix[i].length; j++) {
+        if (matrix[i][j] > max) {
+            max = matrix[i][j];
+        }
+    }
+}
+System.out.println("Maximum value: " + max);
+
+
+4.5 Informal Code Analysis:
+* Informal code analysis involves reviewing and improving code for clarity and efficiency. For example, optimizing a loop to sum the first N natural numbers:
+int n = 100;
+int sum = 0;
+for (int i = 1; i <= n; i++) {
+    sum += i;
+}
+System.out.println("Sum of the first " + n + " natural numbers: " + sum);
+
+
+5.1 Anatomy of a Class:
+* A class in Java is a blueprint for creating objects. It consists of fields (variables) and methods (functions) that define the behavior and attributes of objects.
+* Fields represent the state of an object, and methods define its behavior.
+* Example: Defining a simple Person class.
+public class Person {
+    // Fields
+    String name;
+    int age;
+    
+    // Methods
+    void sayHello() {
+        System.out.println("Hello, my name is " + name);
+    }
+}
+
+
+5.2 Constructors:
+* Constructors are special methods in a class used for initializing objects when they are created.
+* They have the same name as the class and can have parameters for setting initial values.
+* Example: Creating a Person object with a constructor.
+public class Person {
+    String name;
+    int age;
+    
+    // Constructor
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+}
+
+
+5.3 Documentation with Comments:
+* Comments in Java are used to document code for better understanding and future reference.
+* There are two types of comments: single-line comments (//) and multi-line comments (/* */).
+* Example: Adding comments to explain code.
+public class Calculator {
+    // This method adds two numbers
+    public int add(int num1, int num2) {
+        return num1 + num2;
+    }
+}
+
+
+5.4 Accessor Methods:
+* Accessor methods, also known as getters, are used to retrieve the values of private fields in a class.
+* They typically have a get prefix and return the value of a field.
+* Example: Creating an accessor method for the age field in the Person class.
+public int getAge() {
+    return age;
+}
+
+
+5.5 Mutator Methods:
+* Mutator methods, also known as setters, are used to modify the values of private fields in a class.
+* They typically have a set prefix and take a parameter to set the field's value.
+* Example: Creating a mutator method for the age field in the Person class.
+public void setAge(int newAge) {
+    age = newAge;
+}
+
+
+5.6 Writing Methods:
+* Writing methods in a class defines the behavior and operations that objects of the class can perform.
+* Methods can take parameters, perform computations, and return values.
+* Example: Adding a method to calculate the area of a rectangle in a Rectangle class.
+public class Rectangle {
+    int width;
+    int height;
+    
+    public int calculateArea() {
+        return width * height;
+    }
+}
+
+
+5.7 Static Variables and Methods:
+* Static variables and methods belong to the class itself, rather than instances of the class.
+* Static variables are shared among all objects of the class, and static methods can be called on the class without creating an object.
+* Example: Creating a MathUtil class with a static method to calculate the square of a number.
+public class MathUtil {
+    public static int square(int num) {
+        return num * num;
+    }
+}
+
+
+5.8 Scope and Access:
+* Scope refers to the visibility and accessibility of variables and methods in a class.
+* public, private, protected, and default (no modifier) are access modifiers used to control the scope.
+* Example: Using access modifiers to control access to a class's fields.
+public class Student {
+    private String name;  // Private field
+    public int age;       // Public field
+}
+
+
+5.9 this Keyword:
+* The this keyword refers to the current instance of an object within its own methods.
+* It is used to distinguish between instance variables and method parameters with the same name.
+* Example: Using this to differentiate between a class field and a parameter.
+public class Person {
+    String name;
+    
+    public Person(String name) {
+        this.name = name;  // 'this' refers to the object's 'name' field
+    }
+}
+
+
+5.10 Ethical and Social Implications of Computing Systems:
+* Understanding the ethical and social implications of computing systems is important for responsible software development.
+* It involves considering the impact of technology on society, privacy, security, and ethical decision-making.
+* Example: Ensuring that an application's data handling respects user privacy and complies with relevant laws and regulations.
+
+
+6.1 Array:
+* An array in Java is a data structure used to store a collection of elements of the same data type.
+* Arrays have a fixed size and can store elements like integers, strings, or objects.
+* Elements in an array are accessed using their index, which starts at 0.
+* Example: Declaring and initializing an array of integers.
+int[] numbers = {1, 2, 3, 4, 5};
+
+
+6.2 Traversing Arrays:
+* Traversing an array means accessing each element in the array one by one to perform operations or gather information.
+* This is commonly done using a for loop that iterates over the array indices.
+* Example: Traversing an array of strings and printing each element.
+String[] names = {"Alice", "Bob", "Charlie"};
+for (int i = 0; i < names.length; i++) {
+    System.out.println(names[i]);
+}
+
+
+6.3 Enhanced for Loop for Arrays:
+* The enhanced for loop (also known as the "for-each" loop) simplifies array traversal by iterating over each element directly.
+* It doesn't require managing indices and is more concise.
+* Example: Using an enhanced for loop to traverse an array of integers.
+int[] values = {10, 20, 30, 40, 50};
+for (int value : values) {
+    System.out.println(value);
+}
+
+
+6.4 Developing Algorithms Using Arrays:
+* Arrays are fundamental for implementing various algorithms, such as searching, sorting, and data manipulation.
+* You can use algorithms to find specific elements, reorder arrays, or perform mathematical operations on array elements.
+* Example: Implementing a linear search algorithm to find an element in an array.
+public static int linearSearch(int[] arr, int target) {
+    for (int i = 0; i < arr.length; i++) {
+        if (arr[i] == target) {
+            return i;  // Element found at index i
+        }
+    }
+    return -1;  // Element not found
+}
+
+
+7.1 ArrayLists:
+* ArrayLists in Java are part of the Java Collections Framework and are implemented as dynamic arrays. They allow you to store and manipulate a collection of elements of any data type.
+* ArrayLists are advantageous over arrays because they can grow or shrink in size as elements are added or removed, making them ideal for situations where the size of the collection is not known in advance.
+* Example: Creating an ArrayList of integers and adding elements.
+ArrayList<Integer> numbers = new ArrayList<>();
+numbers.add(10); // Adding elements
+numbers.add(20);
+numbers.add(30);
+
+
+7.2 ArrayList Methods:
+* ArrayLists provide a rich set of methods to manipulate the collection. Common methods include:
+   * add(element): Appends an element to the end of the ArrayList.
+   * remove(index): Removes an element at the specified index.
+   * get(index): Retrieves an element at the specified index.
+   * size(): Returns the number of elements in the ArrayList.
+   * clear(): Removes all elements from the ArrayList.
+* Example: Using ArrayList methods to manipulate elements.
+ArrayList<String> fruits = new ArrayList<>();
+fruits.add("Apple");
+fruits.add("Banana");
+fruits.remove(0); // Remove the first element (Apple)
+String secondFruit = fruits.get(1); // Get the second element (Banana)
+int numFruits = fruits.size(); // Get the number of fruits (1)
+fruits.clear(); // Remove all elements
+
+
+7.3 Traversing ArrayLists:
+* Traversing an ArrayList means visiting each element to perform operations or gather information.
+* Common traversal methods include using a traditional for loop, an enhanced for-each loop, or an iterator.
+* Example: Traversing an ArrayList of names using an enhanced for loop.
+ArrayList<String> names = new ArrayList<>();
+names.add("Alice");
+names.add("Bob");
+names.add("Charlie");
+for (String name : names) {
+    System.out.println(name);
+}
+
+
+7.4 Developing Algorithms using ArrayLists:
+* ArrayLists are flexible for implementing algorithms like searching and sorting.
+* You can apply various search algorithms, such as linear search or binary search, to find specific elements within the ArrayList.
+* Example: Implementing a linear search algorithm to find an element in an ArrayList.
+public static int linearSearch(ArrayList<Integer> list, int target) {
+    for (int i = 0; i < list.size(); i++) {
+        if (list.get(i) == target) {
+            return i; // Element found at index i
+        }
+    }
+    return -1; // Element not found
+}
+
+
+7.5 Searching:
+* Searching in an ArrayList involves checking if a specific element exists within the collection.
+* You can use the contains(element) method, which returns a boolean indicating whether the element is present.
+* Example: Using contains() to check if a specific element exists in an ArrayList.
+ArrayList<String> colors = new ArrayList<>();
+colors.add("Red");
+colors.add("Blue");
+boolean containsBlue = colors.contains("Blue"); // true
+
+
+7.6 Sorting:
+* Sorting an ArrayList arranges its elements in a specific order, such as ascending or descending.
+* The Collections class provides a sort() method to sort the ArrayList.
+* Example: Sorting an ArrayList of integers in ascending order.
+ArrayList<Integer> numbers = new ArrayList<>();
+numbers.add(5);
+numbers.add(2);
+numbers.add(8);
+Collections.sort(numbers); // Numbers will be sorted in ascending order
+
+
+7.7 Ethical Issues Around Data Collection:
+* Ethical considerations are essential when collecting and managing data, especially in the context of ArrayLists.
+* This involves respecting user privacy, ensuring data security, and complying with relevant laws and regulations, such as GDPR.
+* Example: When collecting user data in an ArrayList, ensure that you have explicit user consent, protect data with encryption, and follow data protection regulations to respect their privacy.
+
+
+8.1 2D Arrays:
+* A 2D array, also known as a matrix, is a data structure in Java that allows you to store elements in a two-dimensional grid or table. It's essentially an array of arrays.
+* To create a 2D array, you specify the number of rows and columns. Each cell in the grid can store a value of the same data type, such as integers, strings, or custom objects.
+* Example: Creating and initializing a 3x3 integer 2D array.
+int[][] matrix = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+
+8.2 Traversing 2D Arrays:
+* Traversing a 2D array involves visiting each element in the grid to perform operations or gather information. This is typically done using nested loops.
+* You use one loop to iterate over the rows and another loop to iterate over the columns.
+* Example: Traversing a 2D array and calculating the sum of all elements.
+int[][] matrix = {
+    {1, 2, 3},
+    {4, 5, 6},
+    {7, 8, 9}
+};
+
+int sum = 0;
+for (int row = 0; row < matrix.length; row++) {
+    for (int col = 0; col < matrix[row].length; col++) {
+        sum += matrix[row][col];
+    }
+}
+
+* You can also use enhanced for loops for more concise traversal:
+for (int[] row : matrix) {
+    for (int element : row) {
+        sum += element;
+    }
+}
+
+* Additionally, 2D arrays are frequently used in applications like image processing, board games, and representing tabular data in spreadsheets.
+
+
+9.1 Inheritance:
+* Inheritance is a core concept in object-oriented programming, enabling the creation of new classes based on existing classes.
+* In Java, you can create a new class (subclass or derived class) that inherits the attributes and behaviors (fields and methods) of an existing class (superclass or base class).
+* Subclasses can extend the functionality of the superclass by adding new fields or methods, or by overriding existing methods.
+* Example: Creating a subclass Car that inherits from a superclass Vehicle and extends its functionality.
+class Vehicle {
+    String brand;
+    void start() {
+        System.out.println("Vehicle started.");
+    }
+}
+
+class Car extends Vehicle {
+    int numberOfDoors;
+    void accelerate() {
+        System.out.println("Car is accelerating.");
+    }
+}
+
+
+9.2 Writing Constructors for Subclasses:
+* When you create a subclass, you often need to define constructors for it. Constructors in a subclass can call constructors in the superclass using the super keyword to initialize inherited fields.
+* The super keyword allows you to pass arguments to the constructor of the superclass, ensuring that the superclass's fields are properly initialized.
+* Example: Defining constructors for the Car subclass with the super keyword to initialize the brand field from the superclass.
+class Car extends Vehicle {
+    int numberOfDoors;
+
+    Car(String brand, int doors) {
+        super(brand); // Call the superclass constructor to initialize the brand
+        numberOfDoors = doors;
+    }
+}
+
+
+9.3 Overriding Methods:
+* Inheritance allows you to override methods in the superclass with specialized implementations in the subclass.
+* To override a method, the method in the subclass must have the same method signature (name, return type, and parameters) as the one in the superclass.
+* Method overriding enables polymorphism and allows objects of the subclass to behave differently from objects of the superclass while using a common method name.
+* Example: Overriding the start method in the Car subclass to provide a specific implementation.
+class Car extends Vehicle {
+    int numberOfDoors;
+    @Override
+    void start() {
+        System.out.println("Car started.");
+    }
+}
+
+
+9.4 super Keyword:
+* The super keyword is used to access or call methods and constructors from the superclass within the subclass.
+* It is particularly useful in constructors to call constructors in the superclass and pass necessary arguments for initializing inherited fields.
+* The super keyword ensures that the superclass's constructor is executed before the subclass's constructor.
+* Example: Using the super keyword to call a superclass constructor and initialize the brand field.
+class Car extends Vehicle {
+    int numberOfDoors;
+    Car(String brand, int doors) {
+        super(brand); // Call the superclass constructor to initialize the brand
+        numberOfDoors = doors;
+    }
+}
+
+
+9.5 Creating References Using Inheritance Hierarchies:
+* Inheritance hierarchies allow you to create references to objects of a superclass that can hold objects of both the superclass and its subclasses.
+* These references are used for polymorphism, allowing you to call methods and access fields common to the superclass, as well as overridden methods specific to the subclass.
+* Example: Creating references to Vehicle objects that can hold Car objects, enabling polymorphism.
+Vehicle myVehicle = new Car("Toyota", 4);
+
+
+9.6 Polymorphism:
+* Polymorphism allows objects of different classes to be treated as objects of a common superclass, promoting code reusability and flexibility.
+* It is enabled through method overriding, where objects of different subclasses can be used interchangeably when calling common methods.
+* Polymorphism simplifies code and allows for dynamic behavior based on the actual type of an object at runtime.
+* Example: Demonstrating polymorphism by calling the start method on different vehicle objects.
+Vehicle myVehicle = new Car("Toyota", 4);
+myVehicle.start(); // Calls the overridden Car's start method
+
+
+9.7 Object Superclass:
+* In Java, all classes implicitly inherit from the Object class, making it the root superclass for all classes.
+* The Object class provides common methods such as equals, hashCode, and toString.
+* You can use these methods in your own classes to provide default behavior or override them to customize the behavior.
+* Example: Showing the usage of the Object class for the Car class, including the toString method.
+Car myCar = new Car("Toyota", 4);
+String carString = myCar.toString(); // Uses the Object's toString method
+
+
+10.1 Recursion:
+* Recursion is a technique where a function calls itself to solve a problem. In Java, this involves defining a method that refers to itself within its own definition.
+* To make recursion work correctly and efficiently, it's essential to define both the recursive case (how the problem is broken down into smaller subproblems) and the base case (when the recursion should stop to prevent infinite recursion).
+* Recursive functions use a call stack to keep track of the function calls, and this stack is crucial for maintaining the context of each function call.
+Example: Calculating the factorial of a number using recursion.
+int factorial(int n) {
+    // Base case: if n is 0, return 1
+    if (n == 0) {
+        return 1;
+    }
+    // Recursive case: multiply n by the factorial of (n-1)
+    return n * factorial(n - 1);
+}
+
+
+10.2 Recursive Searching:
+* Recursive searching involves finding a specific element in a data structure, such as an array, by repeatedly subdividing the data into smaller parts.
+* Binary search is a classic example of recursive searching. It works by dividing a sorted array into halves and recursively searching in the appropriate half based on a comparison with the middle element.
+* Recursive searching is efficient for sorted data structures and provides a time complexity of O(log n).
+Example: Implementing binary search using recursion.
+int binarySearch(int[] arr, int target, int left, int right) {
+    if (left > right) {
+        return -1; // Element not found
+    }
+    int mid = (left + right) / 2;
+    if (arr[mid] == target) {
+        return mid; // Element found
+    } else if (arr[mid] < target) {
+        return binarySearch(arr, target, mid + 1, right); // Search right half
+    } else {
+        return binarySearch(arr, target, left, mid - 1); // Search left half
+    }
+}
+
+
+10.3 Recursive Sorting:
+* Recursive sorting algorithms are used to sort data by dividing it into smaller segments, sorting those segments, and then merging them back together.
+* Merge sort and quicksort are two well-known recursive sorting algorithms. Merge sort divides the array into halves, sorts them, and merges them. Quicksort divides the array based on a pivot element and recursively sorts the partitions.
+* These algorithms provide stable and efficient sorting with an average time complexity of O(n log n).
+Example: Implementing a simple recursive bubble sort to sort an array.
+void bubbleSort(int[] arr, int n) {
+        if (n == 1) {
+            return; // Sorting completed
+        }
+        for (int i = 0; i < n - 1; i++) {
+            if (arr[i] > arr[i + 1]) {
+                int temp = arr[i];
+                arr[i] = arr[i + 1];
+                arr[i + 1] = temp;
+            }
+        }
+        bubbleSort(arr, n - 1); // Recursive call for the remaining elements
+}
+

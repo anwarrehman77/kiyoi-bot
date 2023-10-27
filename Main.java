@@ -2,6 +2,8 @@ import java.util.*;
 
 class Main {
     public static void main(String[] args) {
+        HashMap<String, String> dic = initalizeDic();
+
         Scanner sc = new Scanner(System.in);
 
         System.out.println("Hi! I'm Mr. Kiyoi!");
@@ -12,12 +14,30 @@ class Main {
             if (c % 3 == 0) System.out.println(getProblem());
             else if (c % 5 == 0) System.out.println(getIDE());
 
+            respond(dic, req.toLowerCase());
             req = sc.nextLine();
-
             c++;
         }
         sc.close();
         System.out.println("Remember, I dismiss you, not the bell.");
+    }
+
+    static HashMap<String, String> initalizeDic() {
+        HashMap<String, String> dict = new HashMap<>();
+        String[] help_keys = {
+            "assist", "aid", "support", "back", "relieve", "lend a hand", "give a hand", 
+            "help out", "be of service", "pitch in", "come to the rescue", "be there for",
+            "boost", "uphold", "facilitate", "encourage", "succor", "help"
+        };
+        for (String s : help_keys) {
+            dict.put(s, "How can I help?");
+        }
+        
+        return dict;
+    }
+
+    static String getHelp() {
+        return null;
     }
 
     static String getProblem() {
@@ -61,14 +81,15 @@ class Main {
     
     static String getIDE() {
         String[] ides = {"Replit", "Google Docs", "Google Slides", "Visual Studio (the purple one)", "Google Colab (Java)", "Notepad", "The sticky note on my desk"};
-
+        
         int n = new Random().nextInt(ides.length);
-        return "You should use " + ides[n];
+        return "You should use " + ides[n] + " to write code";
     }
 
-    static String getResponse() {
-
-
-        return null;
+    static void respond(HashMap<String, String> dic, String req) {
+        if (dic.containsKey(req))
+            System.out.println(dic.get(req));
+        else
+            System.out.println("Sorry, can you rephrase that?");
     }
 }

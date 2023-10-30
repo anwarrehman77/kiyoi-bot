@@ -36,9 +36,156 @@ class Main {
         return dict;
     }
 
-    static String getHelp() {
-        return null;
+    static String getHelp(String response) {
+        ArrayList<String> words = new ArrayList<String>();
+        words = getIndex(response);
+        if(words.size() == 0) {
+          return "I am having trouble recognizing that. Could you rephrase that in a different way or use formal terminalogy?";
+        }
+        else if (words.size() == 1) {
+          return "Sure! I can help with that! \n" + makeBlock(words.get(0)).substring(4);
+        }
+        else if (words.size() == 2) {
+          String str = "";
+          for(String word : words) {
+            str += makeBlock(word).substring(4) + "\n";
+          }
+          return "Sure! I can help with that! \n" + str;
+        }
+    
+        else {
+          String str = "";
+          int i = 1;
+          for(String word : words) {
+              str += Integer.toString(i) + ": " + makeTitle(word).substring(4, makeTitle(word).length()-1) + "\n";
+              i++;
+          }
+          Scanner scan = new Scanner(System.in);  // Create a Scanner object
+          System.out.println("I'm a bit confused, as I am not sure specifically what you need help with. Which of these would you like to learn more about? Response with the number to the left of each option\n" + str + "\nFor none of these, enter -1");
+    
+          String res = scan.nextLine().replaceAll("\\s+","").replaceAll("[^A-Za-z0-9]","");  // Read user input
+          scan.close();
+          if (res.equals("-1")) {
+              return "Alright, try rephrasing your original question in a different way. ";
+          }
+          
+          return makeBlock(words.get(Integer.valueOf(res)-1)).substring(4);
+    
+    
+        }
+      }
+    
+    
+      
+      static ArrayList<String> getIndex(String response) {
+        try {
+          ArrayList<String> indexes = new ArrayList<String>();
+    
+          ArrayList<String> words = splitString(response.toLowerCase().replaceAll("[^a-zA-Z ]", ""));
+          for(String word : words) {
+            BufferedReader input = new BufferedReader(new FileReader("apcs help with responses formatted chatbot.txt"));
+            String pastLine = "";
+            String line = "";
+            while (input.ready()) {
+              pastLine = line; 
+              line = input.readLine();
+    
+    
+              if(pastLine.equals("k&s2Uald9")) {
+                ArrayList<String> titleWords = splitString(line.toLowerCase().replaceAll("[^a-zA-Z ]", ""));
+                for(String titleWord : titleWords) {
+                    if(titleWord.equals(word)) indexes.add(line.substring(0, 4));
+                }
+              }
+    
+            }
+            input.close();
+          }
+    
+          //return the chunk as a string without the numbers at
+          return indexes;
+        }
+    
+        //do this if we can't find the file
+        catch(Exception e) {
+          e.getStackTrace();
+          System.out.println("StackTrace: ");
+             e.printStackTrace();
+          ArrayList<String> sad = new ArrayList<String>(); 
+          sad.add("6969");
+          return sad;
+        }
+      }
+    
+      //this method splits a string into its individual words
+      static ArrayList<String> splitString(String original) {
+        String[] results = original.split(" ");
+        return new ArrayList<String>(Arrays.asList(results));
     }
+    
+    
+      static String makeTitle(String index) {
+        String chunk = makeBlock(index);
+        for(int i = 0; i < chunk.length(); i++) {
+          if (chunk.substring(i, i+1).equals("\n")) {
+            return chunk.substring(0, i);
+        }
+      }
+    
+    return "Something went wrong, please reprase and try again";
+      }
+    
+      //this method should return indexth  "chunk"" or concept information starting from zero
+      static String makeBlock(String index) {
+        //woah comments
+        //this try part is the part that should always execute
+        try {
+          //create new buffered reader class 1
+          BufferedReader input = new BufferedReader(new FileReader("apcs help with responses formatted chatbot.txt"));
+    
+          //iterate through the chunks of the text file 
+          
+          String pastLine = "";
+          String line = "";
+          while (input.ready()) { 
+            pastLine = line; 
+            line = input.readLine();
+            if(pastLine.equals("k&s2Uald9")) {
+    
+            }
+            //stop when we get to the chunk we want to return
+            if(line.length() > 3){
+            if(index.equals(line.substring(0, 4))) {
+              break;
+            }
+            }
+          }
+    
+          //add the chunk to a string
+          String str = "";
+          str += line + "\n";
+          while(input.ready()) {
+            String newLine = input.readLine();
+            if (!newLine.equals("k&s2Uald9")){
+            str += newLine;
+            str += "\n";
+            } else {
+              break;
+            }
+          }
+          input.close();
+          //return the chunk as a string without the numbers at
+          return str;
+        }
+    
+        //do this if we can't find the file
+        catch(Exception e) {
+          e.getStackTrace();
+          System.out.println("StackTrace: ");
+             e.printStackTrace();
+          return "Something went wrong, please try again";
+        }
+      }
 
     static String getProblem() {
         String[] probs = {

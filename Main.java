@@ -16,14 +16,13 @@ class Main {
         int c = 0;
 
         while (!req.toLowerCase().equals("it's 3:22")) {
-            if (c % 3 == 0) System.out.println(getProblem());
-            else if (c % 5 == 0) System.out.println(getIDE());
+            // if (c % 3 == 0) System.out.println(getProblem());
+            // else if (c % 5 == 0) System.out.println(getIDE());
 
             respond(help_keys, req.toLowerCase());
             req = sc.nextLine();
             c++;
         }
-        sc.close();
         System.out.println("Remember, I dismiss you, not the bell.");
     }
 
@@ -51,11 +50,9 @@ class Main {
               str += Integer.toString(i) + ": " + makeTitle(word).substring(4, makeTitle(word).length()-1) + "\n";
               i++;
           }
-          Scanner scan = new Scanner(System.in);  // Create a Scanner object
           System.out.println("I'm a bit confused, as I am not sure specifically what you need help with. Which of these would you like to learn more about? Response with the number to the left of each option\n" + str + "\nFor none of these, enter -1");
     
-          String res = scan.nextLine().replaceAll("\\s+","").replaceAll("[^A-Za-z0-9]","");  // Read user input
-          scan.close();
+          String res = sc.nextLine().replaceAll("\\s+","").replaceAll("[^A-Za-z0-9]","");  // Read user input
           if (res.equals("-1")) {
               return "Alright, try rephrasing your original question in a different way. ";
           }

@@ -2,14 +2,14 @@ import java.io.*;
 import java.util.*;
 
 class Main {
+    static Scanner sc = new Scanner(System.in);
+
     public static void main(String[] args) {
         String[] help_keys = {
             "assist", "aid", "support", "back", "relieve", "lend a hand", "give a hand", 
             "help out", "be of service", "pitch in", "come to the rescue", "be there for",
             "boost", "uphold", "facilitate", "encourage", "succor", "help"
         };
-
-        Scanner sc = new Scanner(System.in);
 
         System.out.println("Hi! I'm Mr. Kiyoi!");
         String req = sc.nextLine();

@@ -13,7 +13,7 @@ class Main {
 
         System.out.println("Hi! I'm Mr. Kiyoi!");
         String req = sc.nextLine();
-        int c = 0;
+        //int c = 0;
 
         while (!req.toLowerCase().equals("it's 3:22")) {
             // if (c % 3 == 0) System.out.println(getProblem());
@@ -21,26 +21,29 @@ class Main {
 
             respond(help_keys, req.toLowerCase());
             req = sc.nextLine();
-            c++;
+            //c++;
         }
         System.out.println("Remember, I dismiss you, not the bell.");
     }
 
-    static String getHelp(String request) {
+    static void getHelp(String request) {
+        request = removePlural(request);
+
+
         ArrayList<String> words = new ArrayList<String>();
         words = getIndex(request);
         if(words.size() == 0) {
-          return "I am having trouble recognizing that. Could you rephrase that in a different way or use formal terminalogy?";
+          System.out.println("I am having trouble recognizing that. Could you rephrase that in a different way or use formal terminalogy?");
         }
         else if (words.size() == 1) {
-          return "Sure! I can help with that! \n" + makeBlock(words.get(0)).substring(4);
+          System.out.println("Sure! I can help with that! \n" + makeBlock(words.get(0)).substring(4));
         }
         else if (words.size() == 2) {
           String str = "";
           for(String word : words) {
             str += makeBlock(word).substring(4) + "\n";
           }
-          return "Sure! I can help with that! \n" + str;
+          System.out.println("Sure! I can help with that! \n" + str);
         }
     
         else {
@@ -50,26 +53,63 @@ class Main {
               str += Integer.toString(i) + ": " + makeTitle(word).substring(4, makeTitle(word).length()-1) + "\n";
               i++;
           }
-          System.out.println("I'm a bit confused, as I am not sure specifically what you need help with. Which of these would you like to learn more about? Response with the number to the left of each option\n" + str + "\nFor none of these, enter -1");
+          System.out.println("I'm a bit confused, as I am not sure specifically what you need help with. Which of these would you like to learn more about? Response with the number to the left of each option\n" + str + "\nFor none of these, enter \"none\"");
     
           String res = sc.nextLine().replaceAll("\\s+","").replaceAll("[^A-Za-z0-9]","");  // Read user input
-          if (res.equals("-1")) {
-              return "Alright, try rephrasing your original question in a different way. ";
+          if (res.equals("none")) {
+              System.out.println("Alright, try rephrasing your original question in a different way. ");
           }
-          
-          return makeBlock(words.get(Integer.valueOf(res)-1)).substring(4);
-    
+          else {
+          System.out.println(makeBlock(words.get(Integer.valueOf(res)-1)).substring(4));
+          }
     
         }
       }
     
-    
+    static String removePlural(String sentence) {
+      if(!sentence.substring(sentence.length()).equals(" ")) {
+        sentence += " ";
+      }
+      String filtered = "";
+      for(int i = 0; i < sentence.length()-2; i++) {
+        if(sentence.substring(i, i+3).equals("es ")) {
+          filtered += " ";
+          i++;
+        }
+        else {
+          filtered += sentence.substring(i, i+1);
+        }
+      }
+      if(!sentence.substring(sentence.length()-2).equals("es")) {
+        filtered += sentence.substring(sentence.length()-1);
+      }
+
+      sentence = filtered;
+      filtered = "";
+      for(int i = 0; i < sentence.length()-1; i++) {
+        if(sentence.substring(i, i+2).equals("s ")) {
+          filtered += " ";
+          i++;
+        }
+        else {
+          filtered += sentence.substring(i, i+1);
+        }
+      }
+      if(!sentence.substring(sentence.length()-1).equals("s")) {
+        filtered += sentence.substring(sentence.length()-1);
+      }
+
+      
+
+      
+      return filtered;
+    }
       
       static ArrayList<String> getIndex(String response) {
         try {
           ArrayList<String> indexes = new ArrayList<String>();
     
-          ArrayList<String> words = splitString(response.toLowerCase().replaceAll("[^a-zA-Z ]", ""));
+          ArrayList<String> words = splitString(removePlural(response.toLowerCase().replaceAll("[^a-zA-Z ]", "")));
           for(String word : words) {
             BufferedReader input = new BufferedReader(new FileReader("apcs help with responses formatted chatbot.txt"));
             String pastLine = "";
@@ -80,7 +120,7 @@ class Main {
     
     
               if(pastLine.equals("k&s2Uald9")) {
-                ArrayList<String> titleWords = splitString(line.toLowerCase().replaceAll("[^a-zA-Z ]", ""));
+                ArrayList<String> titleWords = splitString(removePlural(line.toLowerCase().replaceAll("[^a-zA-Z ]", "")));
                 for(String titleWord : titleWords) {
                     if(titleWord.equals(word)) indexes.add(line.substring(0, 4));
                 }
@@ -96,9 +136,9 @@ class Main {
     
         //do this if we can't find the file
         catch(Exception e) {
-          e.getStackTrace();
-          System.out.println("StackTrace: ");
-             e.printStackTrace();
+          // e.getStackTrace();
+          // System.out.println("StackTrace: ");
+          //    e.printStackTrace();
           ArrayList<String> sad = new ArrayList<String>(); 
           sad.add("6969");
           return sad;
@@ -168,9 +208,9 @@ class Main {
     
         //do this if we can't find the file
         catch(Exception e) {
-          e.getStackTrace();
-          System.out.println("StackTrace: ");
-             e.printStackTrace();
+          // e.getStackTrace();
+          // System.out.println("StackTrace: ");
+          //    e.printStackTrace();
           return "Something went wrong, please try again";
         }
       }

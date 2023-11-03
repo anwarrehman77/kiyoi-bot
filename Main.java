@@ -265,5 +265,34 @@ class Main {
         for (String s: helpWords){
             if (req.contains(s)) getHelp(req);
         }
+        if (req.toLowerCase().contains("seating chart"))
+          createSeatingChart();
+    }
+
+    static void createSeatingChart() {
+      ArrayList<ArrayList<String>> chart = new ArrayList<ArrayList<String>>();
+      chart.add(new ArrayList<String>());
+
+      System.out.println("Who's in your class. Say 'stop' to stop :o");
+      String s = sc.nextLine();
+      int i = 0;
+      int j = 0;
+      while (!s.toLowerCase().contains("stop")) {
+        if (j % 5 == 0) {
+          chart.add(new ArrayList<String>());
+          i++;
+        }
+        s = sc.nextLine();
+        chart.get(i).add(s);
+        j++;
+      }
+
+      System.out.println("Here ya go!");
+
+      for (int k = 1; k < chart.size(); k++) {
+        System.out.println("Group " + k + ":");
+        for (String st : chart.get(k))
+          System.out.println(st + "\n");
+      }
     }
 }

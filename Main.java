@@ -11,17 +11,17 @@ class Main {
             "boost", "uphold", "facilitate", "encourage", "succor", "help"
         };
 
-        System.out.println("Hi! I'm Mr. Kiyoi!");
+        System.out.println("Hi! I'm Mr. Kiyoi! I can help you with APCS concepts and make a seating (given the students in your class :D)");
         String req = sc.nextLine();
-        //int c = 0;
+        int c = 0;
 
         while (!req.toLowerCase().equals("it's 3:22")) {
-            // if (c % 3 == 0) System.out.println(getProblem());
-            // else if (c % 5 == 0) System.out.println(getIDE());
+            if (c % 3 == 0) System.out.println(getProblem());
+            else if (c % 5 == 0) System.out.println(getIDE());
 
             respond(help_keys, req.toLowerCase());
             req = sc.nextLine();
-            //c++;
+            c++;
         }
         System.out.println("Remember, I dismiss you, not the bell.");
     }
@@ -96,7 +96,7 @@ class Main {
         }
       }
       if(!sentence.substring(sentence.length()-1).equals("s")) {
-        filtered += sentence.substring(sentence.length()-1);
+        filtered += sentence.substring(sentence.length()-2);
       }
 
       

@@ -256,14 +256,14 @@ class Main {
         if (req.toLowerCase().contains("seating chart"))
           createSeatingChart();
         else
-          System.out.println("Sorry, I don't recognize that (or it's not in my functionality), can you rephrase that?");
+          System.out.println("Buddy, you're gonna have to speak up, I don't get what you're saying.");
     }
 
     static void createSeatingChart() {
       ArrayList<ArrayList<String>> chart = new ArrayList<ArrayList<String>>();
       chart.add(new ArrayList<String>());
 
-      System.out.println("Who's in your class. Say 'stop' to stop :o");
+      System.out.println("Holdup, I forgot who's in this class, can you remind me, just say 'stop' when you're done.");
       String s = sc.nextLine();
       int i = 0;
       int j = 0;
@@ -277,7 +277,7 @@ class Main {
         j++;
       }
 
-      System.out.println("Here ya go!");
+      System.out.println("Ok here's the seating chart!");
 
       for (int k = 1; k < chart.size(); k++) {
         System.out.println("Group " + k + ":");

@@ -1,15 +1,15 @@
 ﻿k&s2Uald9
-1.1 Primitive Types:
+1.1 Primitive Types, integers, characters, booleans, declaring, data types:
 * In Java, primitive types are the most basic data types that store single values. They are not objects and are more memory-efficient than objects.
 * Common primitive types in Java include int, double, char, boolean, and more.
 * Primitive types are used to store simple data like numbers and characters.
-Exampl1e:
+Example:
 int age = 25; // Declaring and initializing an integer variable
 double price = 19.99; // Declaring and initializing a double variable
 char grade = 'A'; // Declaring and initializing a character variable
 boolean isJavaFun = true; // Declaring and initializing a boolean variable
 k&s2Uald9
-1.2 Why Programming? Why Java?:
+1.2 Why Programming and Java?:
 * Programming is the process of instructing a computer to perform tasks. It enables automation, data analysis, and the creation of software.
 * Java is a popular programming language known for its platform independence, meaning code can run on different platforms without modification.
 * It's used in a wide range of applications, from web development to Android app development.
@@ -24,7 +24,7 @@ double temperature; // Declaration of a double variable
 char symbol; // Declaration of a character variable
 boolean isSunny; // Declaration of a boolean variable
 k&s2Uald9
-1.4 Expressions and Assignment Statements:
+1.4 Expressions and Assignment, variables, literals, operators, operations:
 * Expressions are combinations of variables, literals, operators, and method calls that result in a value.
 * Assignment statements are used to assign values to variables using the assignment operator =.
 * Expressions can be used on the right side of an assignment to calculate a value.
@@ -32,14 +32,14 @@ Example:
 int x = 5; // Assignment statement
 int y = x + 3; // Expression with addition
 k&s2Uald9
-1.5 Compound Assignment Operators:
+1.5 Compound Assignment Operators, +=, -=:
 * Compound assignment operators combine an operation and an assignment. They are shortcuts for performing an operation and assigning the result to a variable.
 * Common compound assignment operators include +=, -=, *=, and /=.
 Example:
 int count = 10;
 count += 5; // Equivalent to count = count + 5
 k&s2Uald9
-1.6 Casting and Range of Variables:
+1.6 Casting and Range of Variables, changing:
 * Casting is the process of converting one data type into another. In Java, you can perform explicit casting when needed.
 * Casting can result in data loss if the target data type has a smaller range.
 * It's essential to be aware of the range limitations of different data types.
@@ -47,7 +47,7 @@ Example:
 int x = 1000;
 byte y = (byte) x; // Explicit casting to a byte, may result in data loss
 k&s2Uald9
-2.1 Objects: Instances of Classes:
+2.1 Initializing Objects: Instances of Classes:
 * In Java, objects are instances of classes, and classes serve as blueprints for object creation.
 * A class defines the attributes (data) and methods (behavior) that objects of that class will have. For example, a Car class might have attributes like color and speed, and methods like start() and accelerate().
 * Objects are created based on class definitions. To create a Car object, you use syntax like Car myCar = new Car();, where myCar is an instance of the Car class.
@@ -72,13 +72,13 @@ k&s2Uald9
 * Non-void methods have return types other than void, indicating that they return a specific data type or object.
 * To call a non-void method, you use the method's name followed by parentheses. The result of the method call can be assigned to a variable. For example, if you have a Person object john with a non-void method getAge(), you can call it and store the result like int age = john.getAge();.
 k&s2Uald9
-2.6 String Objects: Concatenation, Literals & More:
+2.6 String Objects: Concatenation, Literals, and more:
 * Strings in Java are objects representing sequences of characters. They can be created using string literals like "Hello, World!".
 * String concatenation is the process of combining strings. For instance, "Hello" + " " + "World!" results in the string "Hello World!".
 * Strings are immutable, meaning their values cannot be changed after creation. Operations on strings create new string objects.
 * Java provides various methods for manipulating strings, like length(), substring(), and toLowerCase().
 k&s2Uald9
-2.7 String Methods:
+2.7 String Methods: length, charAt, substring, toUpperCase, and more
 * Java's String class includes a wide range of methods for string manipulation.
 * length(): Returns the length of the string.
 * charAt(int index): Retrieves the character at a specified index.
@@ -86,57 +86,57 @@ k&s2Uald9
 * toUpperCase() and toLowerCase(): Change the case of characters in the string.
 * These methods help you perform common string operations efficiently.
 k&s2Uald9
-2.8 Wrapper Classes: Integers and Doubles:
+2.8 Wrapper Classes: Integers and Doubles, change data types:
 * Wrapper classes in Java are used to convert primitive data types (e.g., int, double) into objects.
 * They are useful when you need to treat primitives as objects, for example when working with collections that require objects.
 * For instance, int is a primitive data type, and Integer is its corresponding wrapper class. You can create an Integer object to represent an int value.
 k&s2Uald9
-2.9 Using the Math Class:
+2.9 Using the Math Class: finding square root, exponents, random numbers:
 * The Math class in Java provides a collection of static methods for performing various mathematical calculations.
 * Math.sqrt(double x) computes the square root of a number x.
 * Math.pow(double base, double exponent) raises base to the power of exponent.
 * Math.random() generates a random double value between 0.0 (inclusive) and 1.0 (exclusive).
 * Math methods are essential for complex mathematical operations in your Java programs.
 k&s2Uald9
-3.1 Boolean Expressions:
+3.1 Boolean Expressions: true or false: 
 * Boolean expressions are used to create conditions in Java programs that evaluate to either true or false.
 * They commonly involve relational operators like < (less than), > (greater than), == (equal to), != (not equal to), <= (less than or equal to), and >= (greater than or equal to).
 * Logical operators such as && (logical AND), || (logical OR), and ! (logical NOT) are used to combine multiple conditions.
 * Complex boolean expressions can be created by nesting conditions within parentheses.
 * For example, age >= 18 && (hasLicense || hasPermit) checks if a person is at least 18 years old and either has a driver's license or a learner's permit.
 k&s2Uald9
-3.2 if Statements and Control Flow:
+3.2 Conditionals: if Statements and Control Flow:
 * if statements are fundamental control structures that allow your program to make decisions based on conditions.
 * The syntax of an if statement is if (condition) { /* code to execute if condition is true */ }.
 * When the condition evaluates to true, the code block inside the if statement is executed; otherwise, it's skipped.
 * You can include any valid Java code within the block to be executed.
 * If there's no else part, execution continues after the if block.
 k&s2Uald9
-3.3 if-else Statements:
+3.3 Conditionals: if else Statements:
 * An if-else statement extends the if statement by providing an alternative code block to execute if the condition is false.
 * The syntax is if (condition) { /* code for true condition */ } else { /* code for false condition */ }.
 * When the condition is true, the code in the first block is executed; when it's false, the code in the else block is executed.
 * if-else statements are used when you have exactly two possible outcomes.
 k&s2Uald9
-3.4 else if Statements:
+3.4 Conditionals: else if Statements:
 * An else if statement is used to check multiple conditions in sequence and execute the first block of code whose condition is true.
 * Multiple else if blocks can be used after the initial if statement.
 * The syntax is if (condition1) { /* code for condition1 */ } else if (condition2) { /* code for condition2 */ } else { /* code if no conditions are true */ }.
 * This construct is useful for handling different scenarios with more than two possible outcomes.
 k&s2Uald9
-3.5 Compound Boolean Expressions:
+3.5 Conditionals: Compound Boolean Expressions:
 * Compound boolean expressions allow you to combine multiple conditions using logical operators.
 * && (logical AND) requires that both conditions on its left and right are true for the entire expression to be true.
 * || (logical OR) needs at least one of the conditions to be true for the whole expression to be true.
 * Parentheses can be used to control the order of evaluation in complex expressions.
 * For example, (x > 5 && y < 10) || z == 7 creates a compound boolean expression that checks if x is greater than 5 and y is less than 10, or if z is equal to 7.
 k&s2Uald9
-3.6 Equivalent Boolean Expressions:
+3.6 Equivalent Boolean Expressions, using equals and greater than or less than:
 * Equivalent boolean expressions are different ways to represent the same logical condition.
 * Understanding equivalent expressions is essential for code readability and optimization.
 * For example, if (x > 5) is equivalent to if (!(x <= 5)), as both conditions check if x is greater than 5.
 k&s2Uald9
-3.7 Comparing Objects:
+3.7 Comparing Objects, .equals method:
 * When comparing objects using the == operator, you're comparing object references, not their content.
 * == returns true if the references point to the same object in memory.
 * To compare the content of objects, you should use the .equals() method, which is often overridden in classes to provide custom comparison logic.
@@ -166,7 +166,7 @@ if (text.contains(keyword)) {
     System.out.println("Keyword found!");
 }
 k&s2Uald9
-4.4 Nested Iteration:
+4.4 Nested Iteration, iterate and iterating data and strings:
 * Nested iteration is used for processing multi-dimensional data structures like a 2D array. For example, finding the maximum value in a 2D array:
 int[][] matrix = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}};
 int max = Integer.MIN_VALUE;
@@ -229,7 +229,7 @@ public class Calculator {
     }
 }
 k&s2Uald9
-5.4 Accessor Methods:
+5.4 Accessor Methods, getters:
 * Accessor methods, also known as getters, are used to retrieve the values of private fields in a class.
 * They typically have a get prefix and return the value of a field.
 * Example: Creating an accessor method for the age field in the Person class.
@@ -237,7 +237,7 @@ public int getAge() {
     return age;
 }
 k&s2Uald9
-5.5 Mutator Methods:
+5.5 Mutator Methods, setters:
 * Mutator methods, also known as setters, are used to modify the values of private fields in a class.
 * They typically have a set prefix and take a parameter to set the field's value.
 * Example: Creating a mutator method for the age field in the Person class.
@@ -245,7 +245,7 @@ public void setAge(int newAge) {
     age = newAge;
 }
 k&s2Uald9
-5.6 Writing Methods:
+5.6 Writing Methods in classes, parameters:
 * Writing methods in a class defines the behavior and operations that objects of the class can perform.
 * Methods can take parameters, perform computations, and return values.
 * Example: Adding a method to calculate the area of a rectangle in a Rectangle class.
@@ -268,7 +268,7 @@ public class MathUtil {
     }
 }
 k&s2Uald9
-5.8 Scope and Access:
+5.8 Scope and Access, visibility of variables in a class, private and public variables:
 * Scope refers to the visibility and accessibility of variables and methods in a class.
 * public, private, protected, and default (no modifier) are access modifiers used to control the scope.
 * Example: Using access modifiers to control access to a class's fields.
@@ -382,7 +382,7 @@ public static int linearSearch(ArrayList<Integer> list, int target) {
     return -1; // Element not found
 }
 k&s2Uald9
-7.5 Searching:
+7.5 Searching Arraylists:
 * Searching in an ArrayList involves checking if a specific element exists within the collection.
 * You can use the contains(element) method, which returns a boolean indicating whether the element is present.
 * Example: Using contains() to check if a specific element exists in an ArrayList.
@@ -391,7 +391,7 @@ colors.add("Red");
 colors.add("Blue");
 boolean containsBlue = colors.contains("Blue"); // true
 k&s2Uald9
-7.6 Sorting:
+7.6 Sorting Arraylists:
 * Sorting an ArrayList arranges its elements in a specific order, such as ascending or descending.
 * The Collections class provides a sort() method to sort the ArrayList.
 * Example: Sorting an ArrayList of integers in ascending order.

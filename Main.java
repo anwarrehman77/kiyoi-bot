@@ -56,53 +56,40 @@ class Main {
           System.out.println("I'm a bit confused, as I am not sure specifically what you need help with. Which of these would you like to learn more about? Response with the number to the left of each option\n" + str + "\nFor none of these, enter \"none\"");
     
           String res = sc.nextLine().replaceAll("\\s+","").replaceAll("[^A-Za-z0-9]","");  // Read user input
+          
+          
+          
+          try {
           if (res.equals("none")) {
               System.out.println("Alright, try rephrasing your original question in a different way. ");
           }
           else {
           System.out.println(makeBlock(words.get(Integer.valueOf(res)-1)).substring(4));
           }
+        }
+        catch (Exception e) {
+          System.out.println("That wasn't one of the options!");
+        }
     
         }
       }
     
-    static String removePlural(String sentence) {
-      if(!sentence.substring(sentence.length()).equals(" ")) {
-        sentence += " ";
-      }
-      String filtered = "";
-      for(int i = 0; i < sentence.length()-2; i++) {
-        if(sentence.substring(i, i+3).equals("es ")) {
-          filtered += " ";
-          i++;
+      static String removePlural(String sentence) {
+        String[] words = sentence.split("\\s+");
+        String news = "";
+  
+        for (String word : words) {
+            if (word.endsWith("es")) {
+                news += word.substring(0, word.length() - 2) + " ";
+            }
+            else if (word.endsWith("s")) {
+                news += word.substring(0, word.length() - 1) + " ";
+            }  
+            else {
+                news += word + " ";
+            }
         }
-        else {
-          filtered += sentence.substring(i, i+1);
-        }
-      }
-      if(!sentence.substring(sentence.length()-2).equals("es")) {
-        filtered += sentence.substring(sentence.length()-1);
-      }
-
-      sentence = filtered;
-      filtered = "";
-      for(int i = 0; i < sentence.length()-1; i++) {
-        if(sentence.substring(i, i+2).equals("s ")) {
-          filtered += " ";
-          i++;
-        }
-        else {
-          filtered += sentence.substring(i, i+1);
-        }
-      }
-      if(!sentence.substring(sentence.length()-1).equals("s")) {
-        filtered += sentence.substring(sentence.length()-2);
-      }
-
-      
-
-      
-      return filtered;
+        return news.trim();
     }
       
       static ArrayList<String> getIndex(String response) {

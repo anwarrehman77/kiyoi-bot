@@ -11,7 +11,8 @@ class Main {
             "boost", "uphold", "facilitate", "encourage", "succor", "help"
         };
 
-        System.out.println("Hi! I'm Mr. Kiyoi! I can help you with APCS concepts and make a seating (given the students in your class :D)");
+        System.out.println("Hi! I'm Mr. Kiyoi! I can help you with APCS concepts and make a seating chart (given the students in your class :D)");
+        System.out.println("Btw, if you get tired of me, just say 'it's 3:22'");
         String req = sc.nextLine();
         int c = 0;
 
@@ -254,6 +255,8 @@ class Main {
         }
         if (req.toLowerCase().contains("seating chart"))
           createSeatingChart();
+        else
+          System.out.println("Sorry, I don't recognize that (or it's not in my functionality), can you rephrase that?");
     }
 
     static void createSeatingChart() {

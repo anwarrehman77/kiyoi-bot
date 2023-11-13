@@ -239,7 +239,7 @@ class Main {
             };
 
         int n = new Random().nextInt(probs.length);
-        return "Solve this: " + probs[n];
+        return "Solve this: " + probs[n] + "\nI have no way of grading, so I'm gonna trust that you tried and give you and A for effort =D";
     }
     
     static String getIDE() {

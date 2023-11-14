@@ -14,15 +14,10 @@ class Main {
         System.out.println("Hi! I'm Mr. Kiyoi! I can help you with APCS concepts and make a seating chart (given the students in your class :D)");
         System.out.println("Btw, if you get tired of me, just say 'it's 3:22'");
         String req = sc.nextLine();
-        int c = 0;
 
         while (!req.toLowerCase().equals("it's 3:22")) {
-            if (c % 3 == 0) System.out.println(getProblem());
-            else if (c % 5 == 0) System.out.println(getIDE());
-
             respond(help_keys, req.toLowerCase());
             req = sc.nextLine();
-            c++;
         }
         System.out.println("Remember, I dismiss you, not the bell.");
     }
@@ -203,7 +198,7 @@ class Main {
         }
       }
 
-    static String getProblem() {
+    static void getProblem() {
         String[] probs = {
             "Given an array of scores, return true if each score is equal or greater than the one before. The array will be length 2 or more.\r\n" + //
                 "\r\n" + //
@@ -239,14 +234,16 @@ class Main {
             };
 
         int n = new Random().nextInt(probs.length);
-        return "Solve this: " + probs[n] + "\nI have no way of grading, so I'm gonna trust that you tried and give you and A for effort =D";
+        String p = "Solve this: " + probs[n] + "\nI have no way of grading, so I'm gonna trust that you tried and give you and A for effort =D";
+        System.out.println(p);
     }
     
-    static String getIDE() {
+    static void getIDE() {
         String[] ides = {"Replit", "Google Docs", "Google Slides", "Visual Studio (the purple one)", "Google Colab (Java)", "Notepad", "The sticky note on my desk"};
         
         int n = new Random().nextInt(ides.length);
-        return "You should use " + ides[n] + " to write code";
+        String s = "You should use " + ides[n] + " to write code";
+        System.out.println(s);
     }
 
     static void respond(String[] helpWords, String req) {
@@ -255,6 +252,10 @@ class Main {
         }
         if (req.toLowerCase().contains("seating chart"))
           createSeatingChart();
+        else if (req.toLowerCase().contains("problem") || req.toLowerCase().contains("exercise"))
+          getProblem();
+        else if (req.toLowerCase().contains("give me an ide"))
+          getIDE();
         else
           System.out.println("Buddy, you're gonna have to speak up, I don't get what you're saying.");
     }

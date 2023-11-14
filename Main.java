@@ -1,9 +1,10 @@
 import java.io.*;
 import java.util.*;
+import java.lang.Math;
 
 class Main {
     static Scanner sc = new Scanner(System.in);
-
+    static boolean recognize = true;
     public static void main(String[] args) {
         String[] help_keys = {
             "assist", "aid", "support", "back", "relieve", "lend a hand", "give a hand", 
@@ -46,7 +47,7 @@ class Main {
           }
           System.out.println("Sure! I can help with that! \n" + str);
         }
-    
+
         else {
           String str = "";
           int i = 1;
@@ -55,11 +56,11 @@ class Main {
               i++;
           }
           System.out.println("I'm a bit confused, as I am not sure specifically what you need help with. Which of these would you like to learn more about? Response with the number to the left of each option\n" + str + "\nFor none of these, enter \"none\"");
-    
+
           String res = sc.nextLine().replaceAll("\\s+","").replaceAll("[^A-Za-z0-9]","");  // Read user input
-          
-          
-          
+
+
+
           try {
           if (res.equals("none")) {
               System.out.println("Alright, try rephrasing your original question in a different way. ");
@@ -71,14 +72,14 @@ class Main {
         catch (Exception e) {
           System.out.println("That wasn't one of the options!");
         }
-    
+
         }
       }
-    
+
       static String removePlural(String sentence) {
         String[] words = sentence.split("\\s+");
         String news = "";
-  
+
         for (String word : words) {
             if (word.endsWith("es")) {
                 news += word.substring(0, word.length() - 2) + " ";
@@ -92,11 +93,11 @@ class Main {
         }
         return news.trim();
     }
-      
+
       static ArrayList<String> getIndex(String response) {
         try {
           ArrayList<String> indexes = new ArrayList<String>();
-    
+
           ArrayList<String> words = splitString(removePlural(response.toLowerCase().replaceAll("[^a-zA-Z ]", "")));
           for(String word : words) {
             BufferedReader input = new BufferedReader(new FileReader("apcs help with responses formatted chatbot.txt"));
@@ -105,23 +106,23 @@ class Main {
             while (input.ready()) {
               pastLine = line; 
               line = input.readLine();
-    
-    
+
+
               if(pastLine.equals("k&s2Uald9")) {
                 ArrayList<String> titleWords = splitString(removePlural(line.toLowerCase().replaceAll("[^a-zA-Z ]", "")));
                 for(String titleWord : titleWords) {
                     if(titleWord.equals(word)) indexes.add(line.substring(0, 4));
                 }
               }
-    
+
             }
             input.close();
           }
-    
+
           //return the chunk as a string without the numbers at
           return indexes;
         }
-    
+
         //do this if we can't find the file
         catch(Exception e) {
           // e.getStackTrace();
@@ -132,14 +133,14 @@ class Main {
           return sad;
         }
       }
-    
+
       //this method splits a string into its individual words
       static ArrayList<String> splitString(String original) {
         String[] results = original.split(" ");
         return new ArrayList<String>(Arrays.asList(results));
     }
-    
-    
+
+
       static String makeTitle(String index) {
         String chunk = makeBlock(index);
         for(int i = 0; i < chunk.length(); i++) {
@@ -147,10 +148,10 @@ class Main {
             return chunk.substring(0, i);
         }
       }
-    
+
     return "Something went wrong, please reprase and try again";
       }
-    
+
       //this method should return indexth  "chunk"" or concept information starting from zero
       static String makeBlock(String index) {
         //woah comments
@@ -158,16 +159,16 @@ class Main {
         try {
           //create new buffered reader class 1
           BufferedReader input = new BufferedReader(new FileReader("apcs help with responses formatted chatbot.txt"));
-    
+
           //iterate through the chunks of the text file 
-          
+
           String pastLine = "";
           String line = "";
           while (input.ready()) { 
             pastLine = line; 
             line = input.readLine();
             if(pastLine.equals("k&s2Uald9")) {
-    
+
             }
             //stop when we get to the chunk we want to return
             if(line.length() > 3){
@@ -176,7 +177,7 @@ class Main {
             }
             }
           }
-    
+
           //add the chunk to a string
           String str = "";
           str += line + "\n";
@@ -193,7 +194,7 @@ class Main {
           //return the chunk as a string without the numbers at
           return str;
         }
-    
+
         //do this if we can't find the file
         catch(Exception e) {
           // e.getStackTrace();
@@ -239,24 +240,44 @@ class Main {
             };
 
         int n = new Random().nextInt(probs.length);
-        return "Solve this: " + probs[n] + "\nI have no way of grading, so I'm gonna trust that you tried and give you and A for effort =D";
+        return "Solve this: " + probs[n];
     }
-    
+
     static String getIDE() {
         String[] ides = {"Replit", "Google Docs", "Google Slides", "Visual Studio (the purple one)", "Google Colab (Java)", "Notepad", "The sticky note on my desk"};
-        
+
         int n = new Random().nextInt(ides.length);
         return "You should use " + ides[n] + " to write code";
     }
 
     static void respond(String[] helpWords, String req) {
+      recognize = false;
         for (String s: helpWords){
-            if (req.contains(s)) getHelp(req);
+            if (req.contains(s)) {
+              getHelp(req);
+              recognize = true;
+            }
         }
-        if (req.toLowerCase().contains("seating chart"))
+      
+        if (req.toLowerCase().contains("seating chart")){
+          recognize = true;
           createSeatingChart();
-        else
-          System.out.println("Buddy, you're gonna have to speak up, I don't get what you're saying.");
+        }
+        if (recognize == false){
+          String[] unknownResponses = {
+              "I'm not sure I understand. Could you provide more context?",
+              "I didn't catch that. Can you please repeat or rephrase?",
+              "Sorry, I'm not familiar with that. Could you clarify?",
+              "I'm still learning! Can you explain that in a different way?",
+              "It seems I'm not equipped to respond to that. What else can we talk about?",
+              "I'm not programmed for that response. Mind sharing more details?",
+              "I'm afraid I didn't get that. Can you try saying it differently?",
+              "Hmm, I'm a bit confused. Can you give me more information?",
+              "I'm not certain how to respond. Could you elaborate?",
+              "I'm sorry, I didn't understand. Could you rephrase your statement?"
+          };
+          System.out.println(unknownResponses[(int)(Math.random()*10)]);
+        }
     }
 
     static void createSeatingChart() {

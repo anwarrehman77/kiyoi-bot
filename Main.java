@@ -1,9 +1,10 @@
 import java.io.*;
 import java.util.*;
+import java.lang.Math;
 
 class Main {
     static Scanner sc = new Scanner(System.in);
-
+    static boolean recognize = true;
     public static void main(String[] args) {
         String[] help_keys = {
             "assist", "aid", "support", "back", "relieve", "lend a hand", "give a hand", 
@@ -24,6 +25,28 @@ class Main {
 
     static void getHelp(String request) {
         request = removePlural(request);
+        String[] positiveResponses = {
+          "Absolutely! I'm here to help with any coding challenges you're facing.",
+          "Sure thing! Let's tackle this coding problem together.",
+          "Of course! Your coding concerns are my top priority.",
+          "Indeed! I'm ready to assist you in mastering this programming concept.",
+          "Absolutely, my coding compatriot! How can I guide you today?",
+          "Certainly! Let's dive into the world of programming problem-solving.",
+          "No problem at all! I'm here to help you understand and conquer coding obstacles.",
+          "Indeed! Your journey to coding excellence starts with this question.",
+          "Absolutely! Your curiosity in coding is commendable. Let's explore it further.",
+          "Sure, I've got your back! What coding puzzles are we unraveling today?",
+          "Absolutely! Your enthusiasm for learning code is truly inspiring.",
+          "Of course! Let's make this coding journey a collaborative and successful one.",
+          "Certainly! Your dedication to mastering programming is evident.",
+          "Sure thing! I'm excited to assist you in your coding endeavors.",
+          "Absolutely! Your quest for programming knowledge is commendable.",
+          "Of course! I'm here to support you on your coding adventure.",
+          "Sure, I'm at your service! Let's make coding concepts crystal clear.",
+          "Absolutely! Your commitment to understanding code is truly commendable.",
+          "No doubt! I'm here to help you navigate the intricacies of coding.",
+          "Certainly! Your interest in programming is the key to success. How can I assist you?"
+      };
 
 
         ArrayList<String> words = new ArrayList<String>();
@@ -32,16 +55,16 @@ class Main {
           System.out.println("I am having trouble recognizing that. Could you rephrase that in a different way or use formal terminalogy?");
         }
         else if (words.size() == 1) {
-          System.out.println("Sure! I can help with that! \n" + makeBlock(words.get(0)).substring(4));
+          System.out.println(positiveResponses[(int)(21 * Math.random())] + "\n" + makeBlock(words.get(0)).substring(4));
         }
         else if (words.size() == 2) {
           String str = "";
           for(String word : words) {
             str += makeBlock(word).substring(4) + "\n";
           }
-          System.out.println("Sure! I can help with that! \n" + str);
+          System.out.println(positiveResponses[(int)(21 * Math.random())] + "\n" + str);
         }
-    
+
         else {
           String str = "";
           int i = 1;
@@ -50,30 +73,32 @@ class Main {
               i++;
           }
           System.out.println("I'm a bit confused, as I am not sure specifically what you need help with. Which of these would you like to learn more about? Response with the number to the left of each option\n" + str + "\nFor none of these, enter \"none\"");
-    
+
           String res = sc.nextLine().replaceAll("\\s+","").replaceAll("[^A-Za-z0-9]","");  // Read user input
-          
-          
-          
+
+
+
           try {
           if (res.equals("none")) {
               System.out.println("Alright, try rephrasing your original question in a different way. ");
           }
           else {
+          System.out.println(positiveResponses[(int)(21 * Math.random())]);
           System.out.println(makeBlock(words.get(Integer.valueOf(res)-1)).substring(4));
+
           }
         }
         catch (Exception e) {
           System.out.println("That wasn't one of the options!");
         }
-    
+
         }
       }
-    
+
       static String removePlural(String sentence) {
         String[] words = sentence.split("\\s+");
         String news = "";
-  
+
         for (String word : words) {
             if (word.endsWith("es")) {
                 news += word.substring(0, word.length() - 2) + " ";
@@ -87,11 +112,11 @@ class Main {
         }
         return news.trim();
     }
-      
+
       static ArrayList<String> getIndex(String response) {
         try {
           ArrayList<String> indexes = new ArrayList<String>();
-    
+
           ArrayList<String> words = splitString(removePlural(response.toLowerCase().replaceAll("[^a-zA-Z ]", "")));
           for(String word : words) {
             BufferedReader input = new BufferedReader(new FileReader("apcs help with responses formatted chatbot.txt"));
@@ -100,23 +125,23 @@ class Main {
             while (input.ready()) {
               pastLine = line; 
               line = input.readLine();
-    
-    
+
+
               if(pastLine.equals("k&s2Uald9")) {
                 ArrayList<String> titleWords = splitString(removePlural(line.toLowerCase().replaceAll("[^a-zA-Z ]", "")));
                 for(String titleWord : titleWords) {
                     if(titleWord.equals(word)) indexes.add(line.substring(0, 4));
                 }
               }
-    
+
             }
             input.close();
           }
-    
+
           //return the chunk as a string without the numbers at
           return indexes;
         }
-    
+
         //do this if we can't find the file
         catch(Exception e) {
           // e.getStackTrace();
@@ -127,14 +152,14 @@ class Main {
           return sad;
         }
       }
-    
+
       //this method splits a string into its individual words
       static ArrayList<String> splitString(String original) {
         String[] results = original.split(" ");
         return new ArrayList<String>(Arrays.asList(results));
     }
-    
-    
+
+
       static String makeTitle(String index) {
         String chunk = makeBlock(index);
         for(int i = 0; i < chunk.length(); i++) {
@@ -142,10 +167,10 @@ class Main {
             return chunk.substring(0, i);
         }
       }
-    
+
     return "Something went wrong, please reprase and try again";
       }
-    
+
       //this method should return indexth  "chunk"" or concept information starting from zero
       static String makeBlock(String index) {
         //woah comments
@@ -153,16 +178,16 @@ class Main {
         try {
           //create new buffered reader class 1
           BufferedReader input = new BufferedReader(new FileReader("apcs help with responses formatted chatbot.txt"));
-    
+
           //iterate through the chunks of the text file 
-          
+
           String pastLine = "";
           String line = "";
           while (input.ready()) { 
             pastLine = line; 
             line = input.readLine();
             if(pastLine.equals("k&s2Uald9")) {
-    
+
             }
             //stop when we get to the chunk we want to return
             if(line.length() > 3){
@@ -171,7 +196,7 @@ class Main {
             }
             }
           }
-    
+
           //add the chunk to a string
           String str = "";
           str += line + "\n";
@@ -188,7 +213,7 @@ class Main {
           //return the chunk as a string without the numbers at
           return str;
         }
-    
+
         //do this if we can't find the file
         catch(Exception e) {
           // e.getStackTrace();
@@ -240,24 +265,48 @@ class Main {
     
     static void getIDE() {
         String[] ides = {"Replit", "Google Docs", "Google Slides", "Visual Studio (the purple one)", "Google Colab (Java)", "Notepad", "The sticky note on my desk"};
-        
+
         int n = new Random().nextInt(ides.length);
         String s = "You should use " + ides[n] + " to write code";
         System.out.println(s);
     }
 
     static void respond(String[] helpWords, String req) {
+      recognize = false;
         for (String s: helpWords){
-            if (req.contains(s)) getHelp(req);
+            if (req.contains(s)) {
+              getHelp(req);
+              recognize = true;
+            }
         }
-        if (req.toLowerCase().contains("seating chart"))
+      
+        if (req.toLowerCase().contains("seating chart")){
+          recognize = true;
           createSeatingChart();
-        else if (req.toLowerCase().contains("problem") || req.toLowerCase().contains("exercise"))
+        }
+        else if (req.toLowerCase().contains("problem") || req.toLowerCase().contains("exercise")) {
           getProblem();
-        else if (req.toLowerCase().contains("give me an ide"))
+          recognize = true;
+        }
+        else if (req.toLowerCase().contains("give me an ide")){
           getIDE();
-        else
-          System.out.println("Buddy, you're gonna have to speak up, I don't get what you're saying.");
+          recognize = true;
+        }
+        if (recognize == false){
+          String[] unknownResponses = {
+              "I'm not sure I understand. Could you provide more context?",
+              "I didn't catch that. Can you please repeat or rephrase?",
+              "Sorry, I'm not familiar with that. Could you clarify?",
+              "I'm still learning! Can you explain that in a different way?",
+              "It seems I'm not equipped to respond to that. What else can we talk about?",
+              "I'm not programmed for that response. Mind sharing more details?",
+              "I'm afraid I didn't get that. Can you try saying it differently?",
+              "Hmm, I'm a bit confused. Can you give me more information?",
+              "I'm not certain how to respond. Could you elaborate?",
+              "I'm sorry, I didn't understand. Could you rephrase your statement?"
+          };
+          System.out.println(unknownResponses[(int)(Math.random()*10)]);
+        }
     }
 
     static void createSeatingChart() {

@@ -1,41 +1,43 @@
 import java.io.*;
 import java.util.*;
 import java.lang.Math;
+import javax.swing.JFrame;
+import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.*;
+import javax.swing.BorderFactory;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
+import javax.swing.JTextArea;
+import javax.swing.JScrollPane;
 
-class Main {
+
+class Main extends JFrame implements ActionListener{
     static Scanner sc = new Scanner(System.in);
     static boolean recognize = true;
-    public static void main(String[] args) {
-        String[] help_keys = {
-            "assist", "aid", "support", "back", "relieve", "lend a hand", "give a hand", 
-            "help out", "be of service", "pitch in", "come to the rescue", "be there for",
-            "boost", "uphold", "facilitate", "encourage", "succor", "help"
-        };
-
-        System.out.println("Hi! I'm Mr. Kiyoi! I can help you with APCS concepts and make a seating chart (given the students in your class :D)");
-        System.out.println("Btw, if you get tired of me, just say 'it's 3:22'");
-        String req = sc.nextLine();
-
-        while (!req.toLowerCase().equals("it's 3:22")) {
-            respond(help_keys, req.toLowerCase());
-            req = sc.nextLine();
-        }
-        System.out.println("Remember, I dismiss you, not the bell.");
-    }
-
-    static void getHelp(String request) {
-        request = removePlural(request);
-        String[] positiveResponses = {
+    static boolean gettingHelp = false;
+    private JButton button;
+	  private JTextArea textArea;
+	  private JScrollPane scrollPane;
+	  private JTextField text;
+	  private final String[] HELP_KEYS = {
+		  "assist", "aid", "support", "back", "relieve", "lend a hand", "give a hand", 
+		  "help out", "be of service", "pitch in", "come to the rescue", "be there for",
+		  "boost", "uphold", "facilitate", "encourage", "succor", "help"
+	};
+    private ArrayList<String> helpMethodWords;
+    private final String[] positiveResponses = {
           "Absolutely! I'm here to help with any coding challenges you're facing.",
           "Sure thing! Let's tackle this coding problem together.",
           "Of course! Your coding concerns are my top priority.",
           "Indeed! I'm ready to assist you in mastering this programming concept.",
-          "Absolutely, my coding compatriot! How can I guide you today?",
+          "Absolutely, my coding compatriot! ",
           "Certainly! Let's dive into the world of programming problem-solving.",
           "No problem at all! I'm here to help you understand and conquer coding obstacles.",
           "Indeed! Your journey to coding excellence starts with this question.",
           "Absolutely! Your curiosity in coding is commendable. Let's explore it further.",
-          "Sure, I've got your back! What coding puzzles are we unraveling today?",
+          "Sure, I've got your back! ",
           "Absolutely! Your enthusiasm for learning code is truly inspiring.",
           "Of course! Let's make this coding journey a collaborative and successful one.",
           "Certainly! Your dedication to mastering programming is evident.",
@@ -45,57 +47,82 @@ class Main {
           "Sure, I'm at your service! Let's make coding concepts crystal clear.",
           "Absolutely! Your commitment to understanding code is truly commendable.",
           "No doubt! I'm here to help you navigate the intricacies of coding.",
-          "Certainly! Your interest in programming is the key to success. How can I assist you?"
+          "Certainly! Your interest in programming is the key to success. "
       };
+    public static void main(String[] args) {
+      Main wowWhataGreatProgram = new Main();
+    }
 
+    Main(){
+      textArea = new JTextArea("Hi! I'm Mr. Kiyoi! I can help you with APCS concepts and make a seating chart (given the students in your class :D)"
+      + "\n" + "Btw, if you get tired of me, just say 'it's 3:22'");
+      scrollPane = new JScrollPane(textArea);
+      scrollPane.setBounds(25, 125, 325, 300);
+      scrollPane.setVisible(true);
+      scrollPane.setBorder(BorderFactory.createLineBorder(Color.black));
+      scrollPane.setBackground(Color.WHITE);
+      scrollPane.setOpaque(true);
+  
+  
+  
+  
+      JLabel infoLabel = new JLabel();
+      infoLabel.setBounds(25, 55, 300, 20);
+         infoLabel.setVisible(true);
+      infoLabel.setText("Put your responses here:");
+      infoLabel.setForeground(Color.BLACK);
+      
+    button = new JButton();
+    button.setBounds(250, 75, 100, 30);
+    button.addActionListener(this);
+    button.setHorizontalTextPosition(JButton.CENTER);
+    button.setVerticalTextPosition(JButton.CENTER);
+      button.setForeground(Color.black);
+      button.setBackground(Color.lightGray);
+        
+      button.setBorder(BorderFactory.createLineBorder(Color.black));
+      
+      button.setText("Submit");
+      
+      button.setFocusable(false);
+      this.setLayout(null);
+      this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+      this.setSize(750,750);
+      text= new JTextField();  
+        text.setBounds(25, 75, 200,30);
+      this.add(text);
+      this.add(button);
+      this.add(scrollPane);
+      this.add(infoLabel);
+      this.setBackground(Color.BLUE);
+      this.getContentPane().setBackground(new Color(51, 204, 255));
+      this.setVisible(true);
+    }
 
-        ArrayList<String> words = new ArrayList<String>();
-        words = getIndex(request);
-        if(words.size() == 0) {
-          System.out.println("I am having trouble recognizing that. Could you rephrase that in a different way or use formal terminalogy?");
+    private void getHelp(String request) {
+        request = removePlural(request);
+        helpMethodWords = getIndex(request);
+        if(helpMethodWords.size() == 0) {
+          textArea.append("I am having trouble recognizing that. Could you rephrase that in a different way or use formal terminalogy?");
+          gettingHelp = false;
         }
-        else if (words.size() == 1) {
-          System.out.println(positiveResponses[(int)(21 * Math.random())] + "\n" + makeBlock(words.get(0)).substring(4));
+        else if (helpMethodWords.size() == 1) {
+          textArea.append(positiveResponses[(int)(20 * Math.random())] + "\n" + makeBlock(helpMethodWords.get(0)).substring(4));
+          gettingHelp = false;
         }
-        else if (words.size() == 2) {
-          String str = "";
-          for(String word : words) {
-            str += makeBlock(word).substring(4) + "\n";
-          }
-          System.out.println(positiveResponses[(int)(21 * Math.random())] + "\n" + str);
-        }
-
         else {
           String str = "";
           int i = 1;
-          for(String word : words) {
+          for(String word : helpMethodWords) {
               str += Integer.toString(i) + ": " + makeTitle(word).substring(4, makeTitle(word).length()-1) + "\n";
               i++;
           }
-          System.out.println("I'm a bit confused, as I am not sure specifically what you need help with. Which of these would you like to learn more about? Response with the number to the left of each option\n" + str + "\nFor none of these, enter \"none\"");
-
-          String res = sc.nextLine().replaceAll("\\s+","").replaceAll("[^A-Za-z0-9]","");  // Read user input
-
-
-
-          try {
-          if (res.equals("none")) {
-              System.out.println("Alright, try rephrasing your original question in a different way. ");
-          }
-          else {
-          System.out.println(positiveResponses[(int)(21 * Math.random())]);
-          System.out.println(makeBlock(words.get(Integer.valueOf(res)-1)).substring(4));
-
-          }
-        }
-        catch (Exception e) {
-          System.out.println("That wasn't one of the options!");
-        }
+          textArea.append("I'm a bit confused, as I am not sure specifically what you need help with. Which of these would you like to learn more about? Respond with the number to the left of the desired option\n" + str + "\nFor none of these, enter \"none\"");
 
         }
       }
 
-      static String removePlural(String sentence) {
+    static String removePlural(String sentence) {
         String[] words = sentence.split("\\s+");
         String news = "";
 
@@ -113,7 +140,7 @@ class Main {
         return news.trim();
     }
 
-      static ArrayList<String> getIndex(String response) {
+    static ArrayList<String> getIndex(String response) {
         try {
           ArrayList<String> indexes = new ArrayList<String>();
 
@@ -153,14 +180,12 @@ class Main {
         }
       }
 
-      //this method splits a string into its individual words
-      static ArrayList<String> splitString(String original) {
+    static ArrayList<String> splitString(String original) {
         String[] results = original.split(" ");
         return new ArrayList<String>(Arrays.asList(results));
     }
 
-
-      static String makeTitle(String index) {
+    static String makeTitle(String index) {
         String chunk = makeBlock(index);
         for(int i = 0; i < chunk.length(); i++) {
           if (chunk.substring(i, i+1).equals("\n")) {
@@ -171,8 +196,7 @@ class Main {
     return "Something went wrong, please reprase and try again";
       }
 
-      //this method should return indexth  "chunk"" or concept information starting from zero
-      static String makeBlock(String index) {
+    static String makeBlock(String index) {
         //woah comments
         //this try part is the part that should always execute
         try {
@@ -223,7 +247,7 @@ class Main {
         }
       }
 
-    static void getProblem() {
+    private void getProblem() {
         String[] probs = {
             "Given an array of scores, return true if each score is equal or greater than the one before. The array will be length 2 or more.\r\n" + //
                 "\r\n" + //
@@ -260,25 +284,29 @@ class Main {
 
         int n = new Random().nextInt(probs.length);
         String p = "Solve this: " + probs[n] + "\nI have no way of grading, so I'm gonna trust that you tried and give you and A for effort =D";
-        System.out.println(p);
+        textArea.append(p);
     }
     
-    static void getIDE() {
+    private void getIDE() {
         String[] ides = {"Replit", "Google Docs", "Google Slides", "Visual Studio (the purple one)", "Google Colab (Java)", "Notepad", "The sticky note on my desk"};
 
         int n = new Random().nextInt(ides.length);
         String s = "You should use " + ides[n] + " to write code";
-        System.out.println(s);
+        textArea.append(s);
     }
 
-    static void respond(String[] helpWords, String req) {
+    private void respond(String[] helpWords, String req) {
+      textArea.append("\n\nUser Response: "+ req + "\n\n");
       recognize = false;
         for (String s: helpWords){
             if (req.contains(s)) {
+              gettingHelp = true;
               getHelp(req);
               recognize = true;
+              break;
             }
         }
+        
       
         if (req.toLowerCase().contains("seating chart")){
           recognize = true;
@@ -288,7 +316,7 @@ class Main {
           getProblem();
           recognize = true;
         }
-        else if (req.toLowerCase().contains("give me an ide")){
+        else if (req.toLowerCase().contains("ide")){
           getIDE();
           recognize = true;
         }
@@ -305,15 +333,16 @@ class Main {
               "I'm not certain how to respond. Could you elaborate?",
               "I'm sorry, I didn't understand. Could you rephrase your statement?"
           };
-          System.out.println(unknownResponses[(int)(Math.random()*10)]);
+          textArea.append(unknownResponses[(int)(Math.random()*10)]);
         }
+        
     }
 
     static void createSeatingChart() {
       ArrayList<ArrayList<String>> chart = new ArrayList<ArrayList<String>>();
       chart.add(new ArrayList<String>());
 
-      System.out.println("Holdup, I forgot who's in this class, can you remind me, just say 'stop' when you're done.");
+      System.out.println("Hold up, I forgot who's in this class, can you remind me, just say 'stop' when you're done.");
       String s = sc.nextLine();
       int i = 0;
       int j = 0;
@@ -327,7 +356,7 @@ class Main {
         j++;
       }
 
-      System.out.println("Ok here's the seating chart!");
+      System.out.println("Ok, here's the seating chart!");
 
       for (int k = 1; k < chart.size(); k++) {
         System.out.println("Group " + k + ":");
@@ -335,4 +364,52 @@ class Main {
           System.out.println(st + "\n");
       }
     }
-}
+
+    @Override
+    public void actionPerformed(ActionEvent a){
+      if(a.getSource()==button){
+        if(gettingHelp == false) {
+        if(text.getText().toLowerCase().replace("\n", "").equals("it's 3:22")) {
+          textArea.append("Remember, I dismiss you, not the bell.");
+          try {
+            Thread.sleep(1000);
+          } catch (InterruptedException e) {
+          }
+          this.setVisible(false);
+        }
+      respond(this.HELP_KEYS, text.getText().toLowerCase());
+      text.setText("");
+      }
+    else if(gettingHelp = true) {
+      if(text.getText().toLowerCase().replace("\n", "").equals("it's 3:22")) {
+          textArea.append("Remember, I dismiss you, not the bell.");
+          try {
+            Thread.sleep(1000);
+          } catch (InterruptedException e) {
+          }
+          this.setVisible(false);
+        }
+      String res = text.getText().replaceAll("\\s+","").replaceAll("[^A-Za-z0-9]","");
+          
+          if (res.equals("none")) {
+              textArea.append("Alright, try rephrasing your original question in a different way. ");
+          }
+            try { 
+                Integer.parseInt(res.replaceAll("\\s+","")); 
+                textArea.append("\n" + positiveResponses[(int)(20 * Math.random())]);
+          textArea.append(makeBlock(helpMethodWords.get(Integer.valueOf(res)-1)).substring(4));
+            } catch(NumberFormatException e) {
+                textArea.append("That wasn't one of the options!");
+                System.out.println(e);
+            }
+             catch(NullPointerException e) {
+                textArea.append("That wasn't one of the options!");
+                System.out.println(e);
+             }
+             gettingHelp = false;
+             text.setText("");
+    }
+      }
+    }
+
+  }

@@ -11,6 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
+import javax.swing.JOptionPane;
 
 
 class Main extends JFrame implements ActionListener{
@@ -117,7 +118,7 @@ class Main extends JFrame implements ActionListener{
               str += Integer.toString(i) + ": " + makeTitle(word).substring(4, makeTitle(word).length()-1) + "\n";
               i++;
           }
-          textArea.append("I'm a bit confused, as I am not sure specifically what you need help with. Which of these would you like to learn more about? Respond with the number to the left of the desired option\n" + str + "\nFor none of these, enter \"none\"");
+          textArea.append("I'm a bit confused, as I am not sure specifically what you need help with. Which of these would you like to learn more about? Respond with the number to the left of the desired option\n" + str + "\nFor none of these, enter \"none\"\n\n");
 
         }
       }
@@ -367,28 +368,20 @@ class Main extends JFrame implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent a){
-      if(a.getSource()==button){
-        if(gettingHelp == false) {
-        if(text.getText().toLowerCase().replace("\n", "").equals("it's 3:22")) {
-          textArea.append("Remember, I dismiss you, not the bell.");
+      if(text.getText().toLowerCase().replace("\n", "").equals("it's 3:22") && a.getSource()==button) {
           try {
             Thread.sleep(1000);
           } catch (InterruptedException e) {
           }
           this.setVisible(false);
+          JOptionPane.showMessageDialog(this,"Remember, I dismiss you, not the bell");  
         }
+      else if(a.getSource()==button){
+        if(gettingHelp == false) {
       respond(this.HELP_KEYS, text.getText().toLowerCase());
       text.setText("");
       }
     else if(gettingHelp = true) {
-      if(text.getText().toLowerCase().replace("\n", "").equals("it's 3:22")) {
-          textArea.append("Remember, I dismiss you, not the bell.");
-          try {
-            Thread.sleep(1000);
-          } catch (InterruptedException e) {
-          }
-          this.setVisible(false);
-        }
       String res = text.getText().replaceAll("\\s+","").replaceAll("[^A-Za-z0-9]","");
           
           if (res.equals("none")) {
@@ -396,8 +389,7 @@ class Main extends JFrame implements ActionListener{
           }
             try { 
                 Integer.parseInt(res.replaceAll("\\s+","")); 
-                textArea.append("\n" + positiveResponses[(int)(20 * Math.random())]);
-          textArea.append(makeBlock(helpMethodWords.get(Integer.valueOf(res)-1)).substring(4));
+          textArea.append(positiveResponses[(int)(20 * Math.random())] + "\n" + makeBlock(helpMethodWords.get(Integer.valueOf(res)-1)).substring(4));
             } catch(NumberFormatException e) {
                 textArea.append("That wasn't one of the options!");
                 System.out.println(e);

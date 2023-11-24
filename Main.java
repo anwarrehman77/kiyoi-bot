@@ -335,8 +335,6 @@ class Main extends JFrame implements ActionListener{
           };
           textArea.append(unknownResponses[(int)(Math.random()*10)]);
         }
-        System.out.println(gettingHelp);
-        System.out.println(gettingChart);
     }
 
     private void createSeatingChart() {
@@ -368,7 +366,6 @@ class Main extends JFrame implements ActionListener{
           while(chart.size() % 5 != 0) {
             chart.add("empty");
           }
-          System.out.println(chart);
           for(int i = 0; i < chart.size()/5; i++) {
             re += "Group " + (i + 1) + ":" + "\n\n";
             for(int j = 0; j < 5; j++) {
@@ -392,13 +389,13 @@ class Main extends JFrame implements ActionListener{
           textArea.append(positiveResponses[(int)(20 * Math.random())] + "\n" + makeBlock(helpMethodWords.get(Integer.valueOf(res)-1)).substring(4));
             } catch(NumberFormatException e) {
                 textArea.append("That wasn't one of the options!");
-                System.out.println(e);
-                e.printStackTrace();
+                // System.out.println(e);
+                // e.printStackTrace();
             }
              catch(NullPointerException e) {
                 textArea.append("That wasn't one of the options!");
-                System.out.println(e);
-                e.printStackTrace();
+                // System.out.println(e);
+                // e.printStackTrace();
              }
              gettingHelp = false;
              text.setText("");

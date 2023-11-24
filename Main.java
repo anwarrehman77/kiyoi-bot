@@ -15,9 +15,10 @@ import javax.swing.JOptionPane;
 
 
 class Main extends JFrame implements ActionListener{
-    static Scanner sc = new Scanner(System.in);
     static boolean recognize = true;
+    static boolean gettingChart = false;
     static boolean gettingHelp = false;
+    private ArrayList<String> chart = new ArrayList<String>();
     private JButton button;
 	  private JTextArea textArea;
 	  private JScrollPane scrollPane;
@@ -52,6 +53,7 @@ class Main extends JFrame implements ActionListener{
       };
     public static void main(String[] args) {
       Main wowWhataGreatProgram = new Main();
+      
     }
 
     Main(){
@@ -119,7 +121,6 @@ class Main extends JFrame implements ActionListener{
               i++;
           }
           textArea.append("I'm a bit confused, as I am not sure specifically what you need help with. Which of these would you like to learn more about? Respond with the number to the left of the desired option\n" + str + "\nFor none of these, enter \"none\"\n\n");
-
         }
       }
 
@@ -172,9 +173,6 @@ class Main extends JFrame implements ActionListener{
 
         //do this if we can't find the file
         catch(Exception e) {
-          // e.getStackTrace();
-          // System.out.println("StackTrace: ");
-          //    e.printStackTrace();
           ArrayList<String> sad = new ArrayList<String>(); 
           sad.add("6969");
           return sad;
@@ -311,6 +309,7 @@ class Main extends JFrame implements ActionListener{
       
         if (req.toLowerCase().contains("seating chart")){
           recognize = true;
+          gettingChart = true;
           createSeatingChart();
         }
         else if (req.toLowerCase().contains("problem") || req.toLowerCase().contains("exercise")) {
@@ -336,34 +335,12 @@ class Main extends JFrame implements ActionListener{
           };
           textArea.append(unknownResponses[(int)(Math.random()*10)]);
         }
-        
+        System.out.println(gettingHelp);
+        System.out.println(gettingChart);
     }
 
-    static void createSeatingChart() {
-      ArrayList<ArrayList<String>> chart = new ArrayList<ArrayList<String>>();
-      chart.add(new ArrayList<String>());
-
-      System.out.println("Hold up, I forgot who's in this class, can you remind me, just say 'stop' when you're done.");
-      String s = sc.nextLine();
-      int i = 0;
-      int j = 0;
-      while (!s.toLowerCase().contains("stop")) {
-        if (j % 5 == 0) {
-          chart.add(new ArrayList<String>());
-          i++;
-        }
-        s = sc.nextLine();
-        chart.get(i).add(s);
-        j++;
-      }
-
-      System.out.println("Ok, here's the seating chart!");
-
-      for (int k = 1; k < chart.size(); k++) {
-        System.out.println("Group " + k + ":");
-        for (String st : chart.get(k))
-          System.out.println(st + "\n");
-      }
+    private void createSeatingChart() {
+      textArea.append("Hold up, I forgot who's in this class, can you remind me, just say 'stop' when you're done.");
     }
 
     @Override
@@ -377,31 +354,57 @@ class Main extends JFrame implements ActionListener{
           JOptionPane.showMessageDialog(this,"Remember, I dismiss you, not the bell");  
         }
       else if(a.getSource()==button){
-        if(gettingHelp == false) {
+        if(gettingHelp == false && gettingChart == false) {
       respond(this.HELP_KEYS, text.getText().toLowerCase());
       text.setText("");
-      }
-    else if(gettingHelp = true) {
+      } else if (gettingChart == true) {
+        String s = text.getText();
+        if(!s.toLowerCase().contains("stop")) {
+          chart.add(s);
+        }
+        else if(s.toLowerCase().contains("stop")) {
+          String re= "";
+          Collections.shuffle(chart);
+          while(chart.size() % 5 != 0) {
+            chart.add("empty");
+          }
+          System.out.println(chart);
+          for(int i = 0; i < chart.size()/5; i++) {
+            re += "Group " + (i + 1) + ":" + "\n\n";
+            for(int j = 0; j < 5; j++) {
+              re += chart.get(5*i + j) + "\n";
+            }
+          }
+          textArea.append(re);
+          gettingChart = false;
+          chart.clear();
+        }
+        text.setText("");
+    } else if(gettingHelp == true) {
       String res = text.getText().replaceAll("\\s+","").replaceAll("[^A-Za-z0-9]","");
           
           if (res.equals("none")) {
               textArea.append("Alright, try rephrasing your original question in a different way. ");
           }
+          else {
             try { 
                 Integer.parseInt(res.replaceAll("\\s+","")); 
           textArea.append(positiveResponses[(int)(20 * Math.random())] + "\n" + makeBlock(helpMethodWords.get(Integer.valueOf(res)-1)).substring(4));
             } catch(NumberFormatException e) {
                 textArea.append("That wasn't one of the options!");
                 System.out.println(e);
+                e.printStackTrace();
             }
              catch(NullPointerException e) {
                 textArea.append("That wasn't one of the options!");
                 System.out.println(e);
+                e.printStackTrace();
              }
              gettingHelp = false;
              text.setText("");
     }
-      }
+  }
+    
+  }
     }
-
   }

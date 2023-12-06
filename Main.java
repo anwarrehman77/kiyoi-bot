@@ -58,7 +58,7 @@ class Main extends JFrame implements ActionListener{
 
     Main(){
       textArea = new JTextArea("Hi! I'm Mr. Kiyoi! I can help you with APCS concepts and make a seating chart (given the students in your class :D)"
-      + "\n" + "Btw, if you get tired of me, just say 'it's 3:22'");
+      + "\n" + "I can also give you practice problems or suggest IDEs. " + "\n" + "Btw, if you get tired of me, just say 'it's 3:22'");
       scrollPane = new JScrollPane(textArea);
       scrollPane.setBounds(25, 125, 325, 300);
       scrollPane.setVisible(true);
